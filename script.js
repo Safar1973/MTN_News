@@ -180,12 +180,12 @@ const translations = {
 };
 
 const products = [
-    { id: 1, category: "grains", img: "https://placehold.co/400x300?text=Bulgur", names: { en: "Bulgur", de: "Bulgur", ar: "برغل" }, price: 2.5, expiry: "2025-12-01" },
+    { id: 1, category: "grains", img: "images/bulgur_salad.jpg", names: { en: "Bulgur", de: "Bulgur", ar: "برغل" }, price: 2.5, expiry: "2025-12-01" },
     { id: 2, category: "grains", img: "https://placehold.co/400x300?text=Rice", names: { en: "Rice", de: "Reis", ar: "رز" }, price: 3.0, expiry: "2026-01-15" },
     { id: 3, category: "grains", img: "https://placehold.co/400x300?text=Lentils", names: { en: "Red Lentils", de: "Rote Linsen", ar: "عدس مجروش" }, price: 2.2, expiry: "2025-11-30" },
 
     { id: 4, category: "syrups", img: "https://placehold.co/400x300?text=Tomato+Paste", names: { en: "Tomato Paste", de: "Tomatenmark", ar: "دبس بندورة" }, price: 1.5, expiry: "2025-06-20" },
-    { id: 5, category: "syrups", img: "https://placehold.co/400x300?text=Pomegranate", names: { en: "Pomegranate Molasses", de: "Granatapfelsirup", ar: "دبس رمان" }, price: 4.5, expiry: "2026-03-10" },
+    { id: 5, category: "syrups", img: "images/pomegranate_molasses.jpg", names: { en: "Pomegranate Molasses", de: "Granatapfelsirup", ar: "دبس رمان" }, price: 4.5, expiry: "2026-03-10" },
 
     { id: 6, category: "honey", img: "https://placehold.co/400x300?text=Honey", names: { en: "Natural Honey", de: "Naturhonig", ar: "عسل طبيعي" }, price: 12.0, expiry: "2027-01-01" },
     { id: 7, category: "honey", img: "https://placehold.co/400x300?text=Zaatar", names: { en: "Zaatar", de: "Zaatar", ar: "زعتر" }, price: 3.5, expiry: "2025-08-15" },
@@ -202,7 +202,11 @@ const products = [
     { id: 14, category: "canned", img: "https://placehold.co/400x300?text=Tahini", names: { en: "Tahini", de: "Tahini", ar: "طحينة" }, price: 4.0, expiry: "2025-09-09" },
 
     { id: 15, category: "produce", img: "https://placehold.co/400x300?text=Apples", names: { en: "Red Apples", de: "Rote Äpfel", ar: "تفاح أحمر" }, price: 2.0, expiry: "2024-02-01" },
-    { id: 16, category: "produce", img: "https://placehold.co/400x300?text=Tomatoes", names: { en: "Tomatoes", de: "Tomaten", ar: "بندورة" }, price: 1.5, expiry: "2024-01-25" }
+    { id: 16, category: "produce", img: "https://placehold.co/400x300?text=Tomatoes", names: { en: "Tomatoes", de: "Tomaten", ar: "بندورة" }, price: 1.5, expiry: "2024-01-25" },
+
+    // Freshly added products
+    { id: 17, category: "canned", img: "images/grilled_eggplant_jar.jpg", names: { en: "Grilled Eggplant (Jar)", de: "Gegrillte Aubergine (Glas)", ar: "باذنجان مشوي (مرطبان)" }, price: 3.5, expiry: "2026-05-20" },
+    { id: 18, category: "canned", img: "images/grilled_eggplant_can.jpg", names: { en: "Grilled Eggplant (Can)", de: "Gegrillte Aubergine (Dose)", ar: "باذنجان مشوي (علبة)" }, price: 4.0, expiry: "2026-06-15" }
 ];
 
 let currentLang = "de";
