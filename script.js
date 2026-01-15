@@ -27,7 +27,7 @@ const translations = {
         headerSloganText: "Fresh and quality products delivered to your door.",
         aboutTitle: "About Matin Food Gmbh",
         aboutText:
-            "We provide high quality food products from trusted suppliers, with fast delivery and multiple payment options.",
+            "We are a genuine organic shop in Oberhausen, serving you for 10 years.",
         aboutBackHome: "Back to Home",
         checkoutTitle: "Checkout",
         checkoutInfo:
@@ -87,7 +87,7 @@ const translations = {
         headerSloganText: "Frische und hochwertige Produkte direkt zu Ihnen nach Hause.",
         aboutTitle: "Über Matin Food",
         aboutText:
-            "Wir bieten hochwertige Lebensmittel von vertrauenswürdigen Lieferanten, mit schneller Lieferung und mehreren Zahlungsmöglichkeiten.",
+            "Wir sind ein echter Bio-Laden in Oberhausen seit 10 Jahren.",
         aboutBackHome: "Zur Startseite",
         checkoutTitle: "Kasse",
         checkoutInfo:
@@ -128,7 +128,7 @@ const translations = {
         delivery: "التوصيل",
         payment: "الدفع",
         addToCart: "أضف إلى السلة",
-        currency: "ل.س",
+        currency: "€",
         buyInfo: "الدفع أونلاين أو عند الاستلام أو بالبطاقة",
         deliveryTime: "24-48 ساعة",
         cartTitle: "سلة المشتريات",
@@ -146,7 +146,7 @@ const translations = {
         headerSloganText: "نوفر لك منتجات غذائية طازجة بجودة عالية إلى باب منزلك.",
         aboutTitle: "من نحن",
         aboutText:
-            "نقدم منتجات غذائية عالية الجودة من موردين موثوقين، مع خدمة توصيل سريعة وطرق دفع متعددة.",
+            "نحن متجر عضوي حقيقي في أوبرهاوزن، في خدمتكم منذ 10 سنوات.",
         aboutBackHome: "العودة إلى الرئيسية",
         checkoutTitle: "إتمام الطلب",
         checkoutInfo:
