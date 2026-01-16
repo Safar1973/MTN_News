@@ -179,35 +179,19 @@ const translations = {
     }
 };
 
-const products = [
-    { id: 1, category: "grains", img: "images/bulgur_salad.jpg", names: { en: "Bulgur", de: "Bulgur", ar: "برغل" }, price: 2.5, expiry: "2025-12-01" },
-    { id: 2, category: "grains", img: "https://placehold.co/400x300?text=Rice", names: { en: "Rice", de: "Reis", ar: "رز" }, price: 3.0, expiry: "2026-01-15" },
-    { id: 3, category: "grains", img: "https://placehold.co/400x300?text=Lentils", names: { en: "Red Lentils", de: "Rote Linsen", ar: "عدس مجروش" }, price: 2.2, expiry: "2025-11-30" },
+let products = [];
 
-    { id: 4, category: "syrups", img: "https://placehold.co/400x300?text=Tomato+Paste", names: { en: "Tomato Paste", de: "Tomatenmark", ar: "دبس بندورة" }, price: 1.5, expiry: "2025-06-20" },
-    { id: 5, category: "syrups", img: "images/pomegranate_molasses.jpg", names: { en: "Pomegranate Molasses", de: "Granatapfelsirup", ar: "دبس رمان" }, price: 4.5, expiry: "2026-03-10" },
-
-    { id: 6, category: "honey", img: "https://placehold.co/400x300?text=Honey", names: { en: "Natural Honey", de: "Naturhonig", ar: "عسل طبيعي" }, price: 12.0, expiry: "2027-01-01" },
-    { id: 7, category: "honey", img: "https://placehold.co/400x300?text=Zaatar", names: { en: "Zaatar", de: "Zaatar", ar: "زعتر" }, price: 3.5, expiry: "2025-08-15" },
-
-    { id: 8, category: "dairy", img: "https://placehold.co/400x300?text=Cheese", names: { en: "White Cheese", de: "Weißkäse", ar: "جبنة بيضاء" }, price: 6.0, expiry: "2024-02-28" },
-    { id: 9, category: "dairy", img: "https://placehold.co/400x300?text=Yogurt", names: { en: "Yogurt", de: "Joghurt", ar: "لبن" }, price: 1.8, expiry: "2024-02-10" },
-
-    { id: 10, category: "meat", img: "https://placehold.co/400x300?text=Lamb", names: { en: "Lamb Meat", de: "Lammfleisch", ar: "لحم خاروف" }, price: 15.0, expiry: "2024-01-20" },
-    { id: 11, category: "meat", img: "https://placehold.co/400x300?text=Chicken", names: { en: "Chicken Breast", de: "Hähnchenbrust", ar: "صدر دجاج" }, price: 8.5, expiry: "2024-01-18" },
-
-    { id: 12, category: "drinks", img: "https://placehold.co/400x300?text=Coffee", names: { en: "Arabic Coffee", de: "Arabischer Kaffee", ar: "قهوة عربية" }, price: 5.5, expiry: "2025-05-05" },
-    { id: 13, category: "drinks", img: "https://placehold.co/400x300?text=Tea", names: { en: "Green Tea", de: "Grüner Tee", ar: "شاي أخضر" }, price: 3.0, expiry: "2026-12-12" },
-
-    { id: 14, category: "canned", img: "https://placehold.co/400x300?text=Tahini", names: { en: "Tahini", de: "Tahini", ar: "طحينة" }, price: 4.0, expiry: "2025-09-09" },
-
-    { id: 15, category: "produce", img: "https://placehold.co/400x300?text=Apples", names: { en: "Red Apples", de: "Rote Äpfel", ar: "تفاح أحمر" }, price: 2.0, expiry: "2024-02-01" },
-    { id: 16, category: "produce", img: "https://placehold.co/400x300?text=Tomatoes", names: { en: "Tomatoes", de: "Tomaten", ar: "بندورة" }, price: 1.5, expiry: "2024-01-25" },
-
-    // Freshly added products
-    { id: 17, category: "canned", img: "images/grilled_eggplant_jar.jpg", names: { en: "Grilled Eggplant (Jar)", de: "Gegrillte Aubergine (Glas)", ar: "باذنجان مشوي (مرطبان)" }, price: 3.5, expiry: "2026-05-20" },
-    { id: 18, category: "canned", img: "images/grilled_eggplant_can.jpg", names: { en: "Grilled Eggplant (Can)", de: "Gegrillte Aubergine (Dose)", ar: "باذنجان مشوي (علبة)" }, price: 4.0, expiry: "2026-06-15" }
-];
+async function fetchProducts() {
+    try {
+        const res = await fetch('api/get_products.php');
+        if (!res.ok) throw new Error('Failed to fetch products');
+        products = await res.json();
+        renderProducts();
+    } catch (err) {
+        console.error(err);
+        alert('Error loading products');
+    }
+}
 
 let currentLang = "de";
 let cart = []; // { product, qty }
@@ -526,7 +510,8 @@ function updateOrderSummary() {
 }
 
 /* ارسال الطلب (تجريبي) */
-function submitOrder(e) {
+/* ارسال الطلب (عبر الـ API) */
+async function submitOrder(e) {
     e.preventDefault();
     const t = translations[currentLang];
     if (cart.length === 0) {
@@ -534,8 +519,37 @@ function submitOrder(e) {
         return;
     }
 
-    alert(t.orderPlacedMsg);
-    // ممكن هنا لاحقاً تربطها بباك-إند أو خدمة حقيقية
+    const orderData = {
+        customer: {
+            name: document.getElementById("cust-name").value,
+            address: document.getElementById("cust-address").value,
+            city: document.getElementById("cust-city").value,
+            phone: document.getElementById("cust-phone").value,
+        },
+        paymentMethod: document.getElementById("payment-method-select").value,
+        items: cart,
+        total: cart.reduce((sum, item) => sum + item.product.price * item.qty, 0)
+    };
+
+    try {
+        const res = await fetch('api/place_order.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+
+        const result = await res.json();
+        if (result.success) {
+            alert("Order placed successfully! Order ID: " + result.orderId);
+            clearCart();
+            goToSection('home-section');
+        } else {
+            alert("Failed to place order: " + (result.error || 'Unknown error'));
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Error submitting order.");
+    }
 }
 
 /* التنقل بين الصفحات (Home / Products / About / Checkout) */
@@ -592,4 +606,5 @@ document.addEventListener("DOMContentLoaded", () => {
     setupNavLinks();
     goToSection("home-section");
     setLanguage("de"); // اللغة الافتراضية
+    fetchProducts();
 });
